@@ -9,12 +9,12 @@ exports[`should render correctly 1`] = `
       className="date-picker-input"
       onChange={[Function]}
       onFocus={[Function]}
-      placeholder="Date"
+      placeholder="This is the placeholder"
       style={
         Object {
           "border": "1px solid black",
           "borderRadius": 4,
-          "minWidth": 0,
+          "minWidth": 150,
           "outline": "none",
           "padding": 5,
         }
