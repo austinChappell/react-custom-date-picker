@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<div
+  className="DatePicker"
+>
+  <div>
+    <input
+      className="date-picker-input"
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Date"
+      style={
+        Object {
+          "border": "1px solid black",
+          "borderRadius": 4,
+          "minWidth": 0,
+          "outline": "none",
+          "padding": 5,
+        }
+      }
+      value=""
+    />
+  </div>
+</div>
+`;
