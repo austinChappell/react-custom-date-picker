@@ -36,17 +36,18 @@ This is the minimum requirement for using the react-custom-date-picker
         date: null,
       }
 
-     handleDateChange = (date) => {
-       this.setState({ date });
-     }
+      handleDateChange = (date) => {
+        this.setState({ date });
+      }
 
-    render() {
-      return (
-        <DatePicker
-          date={this.state.date}
-          handleDateChange={this.handleDateChange}
-        />
-      );
+      render() {
+        return (
+          <DatePicker
+            date={this.state.date}
+            handleDateChange={this.handleDateChange}
+          />
+        );
+      }
     }
 
     export default App;
@@ -61,24 +62,25 @@ This is the minimum requirement for using the react-custom-date-picker
         date: null,
       }
 
-     handleDateChange = (date) => {
-       this.setState({ date });
-     }
+      handleDateChange = (date) => {
+        this.setState({ date });
+      }
 
-    render() {
-      return (
-        <DatePicker
-          color="#296b3e"
-          date={this.state.date}
-          errorColor="#c32c27"
-          handleDateChange={this.handleDateChange}
-          hoverWeek
-          inputStyle={{
-            borderRadius: 0,
-          }}
-          lightHeader
-        />
-      );
+      render() {
+        return (
+          <DatePicker
+            color="#296b3e"
+            date={this.state.date}
+            errorColor="#c32c27"
+            handleDateChange={this.handleDateChange}
+            hoverWeek
+            inputStyle={{
+              borderRadius: 0,
+            }}
+            lightHeader
+          />
+        );
+      }
     }
 
     export default App;
@@ -101,15 +103,16 @@ This is the minimum requirement for using the react-custom-date-picker
         });
       }
 
-    render() {
-      return (
-        <DatePicker
-          date={this.state.date}
-          endDate={this.state.endDate}
-          handleDateChange={this.handleDateChange}
-          range
-        />
-      );
+      render() {
+        return (
+          <DatePicker
+            date={this.state.date}
+            endDate={this.state.endDate}
+            handleDateChange={this.handleDateChange}
+            range
+          />
+        );
+      }
     }
 
     export default App;
