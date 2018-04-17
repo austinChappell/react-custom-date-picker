@@ -176,7 +176,7 @@ class Calendar extends Component {
       padding: 10,
       position: 'relative',
       textAlign: 'center',
-      width: colWidth,
+      width: colWidth - 1,
     };
 
     // get date info

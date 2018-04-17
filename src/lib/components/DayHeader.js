@@ -10,7 +10,10 @@ const propTypes = {
 const DayHeader = ({ colStyle, dayNames, week }) => {
   const style = Object.assign({}, colStyle, { fontWeight: 600 });
   return (
-    <div className="day-header">
+    <div
+      className="day-header"
+      style={{ textAlign: 'center' }}
+    >
       {week.map((dayIndex, index) => (
         <span
           key={index}

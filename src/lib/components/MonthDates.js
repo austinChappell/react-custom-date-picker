@@ -63,6 +63,7 @@ class MonthDates extends Component {
         style={{
           cursor: 'pointer',
           fontWeight: 200,
+          textAlign: 'center',
         }}
       >
         {monthDates.map((weekOfMonth, weekIndex) => (
