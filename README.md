@@ -130,7 +130,7 @@ This is the minimum requirement for using the react-custom-date-picker
 | handleDateChange | Used to control value of date (or array of two dates if using 'range' prop) | Function | n/a | Yes |
 | hoverWeek | Highlights entire week on hover | Boolean | false | No |
 | inputStyle | All CSS attributes for input DOM element available | Object | {} | No |
-| keepOpen | Prevent the calendar from closing on selection or outside click | false | No |
+| keepOpen | Prevent the calendar from closing on selection or outside click | Boolean | false | No |
 | lightHeader | Use white font for header and selected date (recommend if 'color' prop is a dark color) | Boolean | false | No |
 | placeholder | Placeholder text for input | String | 'Date' | No |
 | range | Allow user to select start date and end date | Boolean | false | No |
