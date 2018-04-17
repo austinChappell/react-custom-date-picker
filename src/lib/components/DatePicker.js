@@ -62,8 +62,8 @@ class DatePicker extends Component {
     const { range } = this.props;
     if (range) {
       const dates = displayDate.split('-');
-      const startDate = new Date(dates[0].trim());
-      const endDate = new Date(dates[1].trim());
+      const startDate = dates[0] ? new Date(dates[0].trim()) : null;
+      const endDate = dates[1] ? new Date(dates[1].trim()) : null;
       if (startDate != 'Invalid Date' && endDate != 'Invalid Date') {
         this.props.handleDateChange([startDate, endDate]);
       }
