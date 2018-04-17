@@ -8,17 +8,17 @@ class App extends Component {
   }
 
   // use this for single date
-  // handleDateChange = (date) => {
-  //   this.setState({ date });
-  // }
+  handleDateChange = (date) => {
+    this.setState({ date });
+  }
 
   // use this for range dates
-  handleDateChange = ([date, endDate]) => {
-    this.setState({
-      date,
-      endDate,
-    });
-  }
+  // handleDateChange = ([date, endDate]) => {
+  //   this.setState({
+  //     date,
+  //     endDate,
+  //   });
+  // }
 
   render() {
     return (
@@ -38,7 +38,7 @@ class App extends Component {
           // keepOpen
           lightHeader
           placeholder="Select Date"
-          range
+          // range
           required
         // startOfWeek={1}
         />

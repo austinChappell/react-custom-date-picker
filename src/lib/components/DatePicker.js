@@ -51,6 +51,12 @@ class DatePicker extends Component {
     this.setState({ activated: true, showCalendar: false });
   }
 
+  genFirstDay = (date) => {
+    const month = moment(date).format('MM');
+    const year = moment(date).format('YYYY');
+    return `${year}-${month}-${"01"}`;
+  }
+
   handleChange = (evt) => {
     const displayDate = evt.target.value;
     this.setState({ displayDate });
@@ -105,7 +111,9 @@ class DatePicker extends Component {
   setMonthIndex = () => {
     const { date } = this.props;
     if (date) {
-      const monthDiff = moment(date).diff(moment(), 'months');
+      const firstDayOfSelectedMonth = this.genFirstDay(date);
+      const firstOfThisMonth = this.genFirstDay(new Date());
+      const monthDiff = moment(firstDayOfSelectedMonth).diff(moment(firstOfThisMonth), 'months');
       return monthDiff;
     }
     return 0;
