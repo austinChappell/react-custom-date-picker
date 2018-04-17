@@ -168,7 +168,7 @@ class Calendar extends Component {
     const wrapperStyle = Object.assign({}, defaultStyle, style);
 
     // get the width of each column
-    const colWidth = width / 7;
+    const colWidth = Math.floor(width / 7);
     // set the width for columns
     const colStyle = {
       boxSizing: 'border-box',
