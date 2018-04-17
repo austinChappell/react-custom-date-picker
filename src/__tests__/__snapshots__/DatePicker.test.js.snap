@@ -7,6 +7,7 @@ exports[`should render correctly 1`] = `
   <div>
     <input
       className="date-picker-input"
+      onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       placeholder="This is the placeholder"
