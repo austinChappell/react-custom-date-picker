@@ -132,7 +132,7 @@ This is the minimum requirement for using the react-custom-date-picker
 | inputStyle | All CSS attributes for input DOM element available | Object | {} | No |
 | keepOpen | Prevent the calendar from closing on selection or outside click | Boolean | false | No |
 | lightHeader | Use white font for header and selected date (recommend if 'color' prop is a dark color) | Boolean | false | No |
-| placeholder | Placeholder text for input | String | 'Date' | No |
+| placeholder | Placeholder text for input | String | 'Date (MM/DD/YYYY)' | No |
 | range | Allow user to select start date and end date | Boolean | false | No |
 | required | Displays error on blur if date is invalid | Boolean | false | No |
 | startOfWeek | Set the starting day of the week (0 = Sunday, 1 = Monday, etc.) | Number | 0 | No |

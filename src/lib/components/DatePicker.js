@@ -33,7 +33,7 @@ const defaultProps = {
   inputStyle: {},
   keepOpen: false,
   lightHeader: false,
-  placeholder: 'Date',
+  placeholder: 'Date (MM/DD/YYYY)',
   range: false,
   required: false,
   startOfWeek: 0,
@@ -55,6 +55,24 @@ class DatePicker extends Component {
     const month = moment(date).format('MM');
     const year = moment(date).format('YYYY');
     return `${year}-${month}-${"01"}`;
+  }
+
+  handleBlur = () => {
+    const { displayDate } = this.state;
+    const { range } = this.props;
+    if (range) {
+      const dates = displayDate.split('-');
+      const startDate = new Date(dates[0].trim());
+      const endDate = new Date(dates[1].trim());
+      if (startDate != 'Invalid Date' && endDate != 'Invalid Date') {
+        this.props.handleDateChange([startDate, endDate]);
+      }
+    } else {
+      const date = new Date(displayDate);
+      if (date != 'Invalid Date') {
+        this.props.handleDateChange(date);
+      }
+    }
   }
 
   handleChange = (evt) => {
@@ -220,6 +238,7 @@ class DatePicker extends Component {
         <div>
           <input
             className="date-picker-input"
+            onBlur={this.handleBlur}
             onChange={evt => this.handleChange(evt)}
             onFocus={this.showCalendar}
             style={renderInputStyle}
