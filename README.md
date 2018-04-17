@@ -121,7 +121,7 @@ This is the minimum requirement for using the react-custom-date-picker
 
 | Prop | Description | Type | Default | Required |
 | --- | --- | --- | --- | --- |
-| color | The primary color of the date picker | String | '#005599' | No |
+| color | The primary color of the date picker | String | '#46b2e9' | No |
 | date | The date (or start date if using the 'range' prop) | Date Object | null | Yes |
 | endDate | The end date if using the 'range' prop | Date Object | null | Yes |
 | errorColor | The color displayed if date is invalid and using the 'required' prop | String | '#ff0000' | No |

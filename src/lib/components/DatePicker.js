@@ -23,7 +23,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color: '#005599',
+  color: '#46b2e9',
   date: null,
   endDate: null,
   errorColor: '#ff0000',
