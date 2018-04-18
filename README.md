@@ -132,6 +132,8 @@ This is the minimum requirement for using the react-custom-date-picker
 | inputStyle | All CSS attributes for input DOM element available | Object | {} | No |
 | keepOpen | Prevent the calendar from closing on selection or outside click | Boolean | false | No |
 | lightHeader | Use white font for header and selected date (recommend if 'color' prop is a dark color) | Boolean | false | No |
+| maxDate | Set the max date allowed | String ('YYYY-MM-DD') | null | No |
+| minDate | Set the min date allowed | String ('YYYY-MM-DD') | null | No |
 | modal | Display the calendar in a modal view (does not work with the prop 'keepOpen') | Boolean | false | No |
 | placeholder | Placeholder text for input | String | 'Date (MM/DD/YYYY)' | No |
 | range | Allow user to select start date and end date | Boolean | false | No |
