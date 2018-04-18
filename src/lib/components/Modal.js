@@ -25,9 +25,7 @@ class Modal extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fullDisplay !== this.props.fullDisplay) {
       if (this.props.fullDisplay) {
-        console.log('fade in');
       } else {
-        console.log('fade out');
         const style = {
           backgroundColor: 'rgba(0,0,0,0)',
         }
@@ -41,12 +39,10 @@ class Modal extends Component {
   updateOuterStyle = (newOuterStyle) => {
     const stateStyle = this.state.outerStyle;
     const outerStyle = { ...stateStyle, ...newOuterStyle };
-    console.log('NEW STYLE', outerStyle);
     this.setState({ outerStyle });
   }
 
   render() {
-    console.log('PROPS', this.props)
     const { outerStyle } = this.state;
 
     return (

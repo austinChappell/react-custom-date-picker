@@ -37,6 +37,8 @@ class App extends Component {
           }}
           // keepOpen
           lightHeader
+          maxDate="2018-04-18"
+          minDate="2018-04-17"
           modal
           placeholder="Select Date"
           range

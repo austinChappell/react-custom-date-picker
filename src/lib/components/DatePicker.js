@@ -19,6 +19,8 @@ const propTypes = {
   inputStyle: PropTypes.objectOf(PropTypes.any),
   keepOpen: PropTypes.bool,
   lightHeader: PropTypes.bool,
+  maxDate: PropTypes.string,
+  minDate: PropTypes.string,
   modal: PropTypes.bool,
   placeholder: PropTypes.string,
   range: PropTypes.bool,
@@ -37,6 +39,8 @@ const defaultProps = {
   inputStyle: {},
   keepOpen: false,
   lightHeader: false,
+  maxDate: null,
+  minDate: null,
   modal: false,
   placeholder: 'Date (MM/DD/YYYY)',
   range: false,
@@ -136,14 +140,16 @@ class DatePicker extends Component {
       const displayDate = `${startDisplay} - ${endDisplay}`;
       const startDate = new Date(startDisplay);
       const endDate = new Date(endDisplay);
-      this.setState({
-        activated: true,
-        calendarMonthIndex: 0,
-        displayDate,
-      }, () => {
-        this.props.handleDateChange([startDate, endDate]);
-        this.closeCalendar();
-      });
+      if (endDate > startDate) {
+        this.setState({
+          activated: true,
+          calendarMonthIndex: 0,
+          displayDate,
+        }, () => {
+          this.props.handleDateChange([startDate, endDate]);
+          this.closeCalendar();
+        });
+      }
     }
   }
 
@@ -197,6 +203,8 @@ class DatePicker extends Component {
       inputStyle,
       keepOpen,
       lightHeader,
+      maxDate,
+      minDate,
       modal,
       placeholder,
       range,
@@ -270,6 +278,8 @@ class DatePicker extends Component {
           handleDateChange={this.handleDateChange}
           hoverWeek={hoverWeek}
           lightHeader={lightHeader}
+          maxDate={maxDate}
+          minDate={minDate}
           modal={modal}
           moveIndex={this.moveIndex}
           range={range}

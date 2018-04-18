@@ -9,6 +9,7 @@ const propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   handleHover: PropTypes.func.isRequired,
   monthAsNum: PropTypes.string.isRequired,
+  outsideOfRange: PropTypes.bool.isRequired,
   secondaryHover: PropTypes.bool.isRequired,
   todayMarker: PropTypes.objectOf(PropTypes.any),
   weekIndex: PropTypes.number.isRequired,
@@ -29,6 +30,7 @@ const Day = (props) => {
     handleDateChange,
     handleHover,
     monthAsNum,
+    outsideOfRange,
     todayMarker,
     weekIndex,
     yearOfDay,
@@ -42,12 +44,18 @@ const Day = (props) => {
     backgroundColor: secondaryHover ? '#dddddd' : '#ffffff',
   };
 
+  const outsideRangeStyle = {
+    color: '#dddddd',
+  };
+
   let activeStyle;
 
   if (active) {
     activeStyle = activeDayStyle;
   } else if (secondaryHover) {
     activeStyle = secondaryHoverStyle;
+  } else if (outsideOfRange) {
+    activeStyle = outsideRangeStyle;
   } else {
     activeStyle = {};
   }
@@ -56,8 +64,17 @@ const Day = (props) => {
   return (
     <span
       key={dayIndex}
-      onClick={() => handleDateChange(yearOfDay, monthAsNum, day.date)}
-      onMouseEnter={() => handleHover(dayIndex, weekIndex)}
+      onClick={() => {
+        return outsideOfRange ?
+          () => {} :
+          handleDateChange(yearOfDay, monthAsNum, day.date);
+      }}
+      onMouseEnter={() => {
+        return outsideOfRange ?
+          // disable previous allowed hover
+          handleHover(null, null) :
+          handleHover(dayIndex, weekIndex);
+      }}
       style={style}
     >
       {day.date} {todayMarker}

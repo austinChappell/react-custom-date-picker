@@ -11,6 +11,8 @@ const propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   hoverWeek: PropTypes.bool.isRequired,
   lightHeader: PropTypes.bool.isRequired,
+  maxDate: PropTypes.string,
+  minDate: PropTypes.string,
   monthDates: PropTypes.arrayOf(PropTypes.array).isRequired,
   range: PropTypes.bool.isRequired,
   selectedDate: PropTypes.objectOf(PropTypes.any),
@@ -19,6 +21,8 @@ const propTypes = {
 };
 
 const defaultProps = {
+  endDate: null,
+  minDate: null,
   selectedDate: null,
 };
 
@@ -44,6 +48,8 @@ class MonthDates extends Component {
       handleDateChange,
       hoverWeek,
       lightHeader,
+      maxDate,
+      minDate,
       monthDates,
       range,
       selectedDate,
@@ -95,6 +101,10 @@ class MonthDates extends Component {
               const selectedDateDisplay = moment(selectedDate).format('YYYY-MM-DD');
               const endDateDisplay = moment(endDate).format('YYYY-MM-DD');
               const dateValid = JSON.stringify(new Date(dateDisplay)) !== 'null';
+              const thisDate = (new Date(dateDisplay));
+              const maxDiff = moment(thisDate).startOf('day').diff(moment(maxDate).startOf('day'), 'days');
+              const minDiff = moment(thisDate).startOf('day').diff(moment(minDate).startOf('day'), 'days');
+              const outsideOfRange = minDiff < -1 || maxDiff >= 0;
 
               const isSelected = dateDisplay === selectedDateDisplay && dateValid;
               const endDateSelected = dateDisplay === endDateDisplay && dateValid;
@@ -158,6 +168,7 @@ class MonthDates extends Component {
                   handleDateChange={handleDateChange}
                   handleHover={this.handleHover}
                   monthAsNum={monthAsNum}
+                  outsideOfRange={outsideOfRange}
                   secondaryHover={secondaryHover}
                   todayMarker={todayMarker}
                   weekIndex={weekIndex}

@@ -15,6 +15,8 @@ const propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   hoverWeek: PropTypes.bool,
   lightHeader: PropTypes.bool,
+  maxDate: PropTypes.string,
+  minDate: PropTypes.string,
   modal: PropTypes.bool.isRequired,
   moveIndex: PropTypes.func.isRequired,
   range: PropTypes.bool.isRequired,
@@ -150,6 +152,8 @@ class Calendar extends Component {
       handleDateChange,
       hoverWeek,
       lightHeader,
+      maxDate,
+      minDate,
       modal,
       moveIndex,
       range,
@@ -218,6 +222,8 @@ class Calendar extends Component {
           handleDateChange={handleDateChange}
           hoverWeek={hoverWeek}
           lightHeader={lightHeader}
+          maxDate={maxDate}
+          minDate={minDate}
           monthDates={monthDates}
           range={range}
           selectedDate={selectedDate}
