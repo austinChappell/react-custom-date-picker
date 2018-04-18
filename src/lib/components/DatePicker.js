@@ -94,11 +94,15 @@ class DatePicker extends Component {
       const dates = displayDate.split('-');
       const startDate = dates[0] ? new Date(dates[0].trim()) : null;
       const endDate = dates[1] ? new Date(dates[1].trim()) : null;
+
+      // eslint-disable-next-line
       if (startDate != 'Invalid Date' && endDate != 'Invalid Date') {
         this.props.handleDateChange([startDate, endDate]);
       }
     } else {
       const date = new Date(displayDate);
+
+      // eslint-disable-next-line
       if (date != 'Invalid Date') {
         this.props.handleDateChange(date);
       }
