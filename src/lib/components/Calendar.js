@@ -15,6 +15,7 @@ const propTypes = {
   handleDateChange: PropTypes.func.isRequired,
   hoverWeek: PropTypes.bool,
   lightHeader: PropTypes.bool,
+  modal: PropTypes.bool.isRequired,
   moveIndex: PropTypes.func.isRequired,
   range: PropTypes.bool.isRequired,
   startOfWeek: PropTypes.number,
@@ -149,6 +150,7 @@ class Calendar extends Component {
       handleDateChange,
       hoverWeek,
       lightHeader,
+      modal,
       moveIndex,
       range,
       style,
@@ -159,7 +161,8 @@ class Calendar extends Component {
     const defaultStyle = {
       backgroundColor: '#ffffff',
       boxShadow: '1px 1px 5px gray',
-      position: 'absolute',
+      margin: modal ? '20vh auto' : 'auto',
+      position: modal ? 'static' : 'absolute',
       width,
       zIndex: 1000,
     };

@@ -37,6 +37,7 @@ class App extends Component {
           }}
           // keepOpen
           lightHeader
+          modal
           placeholder="Select Date"
           range
           required

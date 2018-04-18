@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import Calendar from './Calendar';
+import Modal from './Modal';
+
+const transitionSpeed = 250;
 
 const propTypes = {
   color: PropTypes.string,
@@ -16,6 +19,7 @@ const propTypes = {
   inputStyle: PropTypes.objectOf(PropTypes.any),
   keepOpen: PropTypes.bool,
   lightHeader: PropTypes.bool,
+  modal: PropTypes.bool,
   placeholder: PropTypes.string,
   range: PropTypes.bool,
   required: PropTypes.bool,
@@ -33,6 +37,7 @@ const defaultProps = {
   inputStyle: {},
   keepOpen: false,
   lightHeader: false,
+  modal: false,
   placeholder: 'Date (MM/DD/YYYY)',
   range: false,
   required: false,
@@ -40,15 +45,36 @@ const defaultProps = {
 };
 
 class DatePicker extends Component {
-  state = {
-    activated: false,
-    calendarMonthIndex: 0,
-    displayDate: '',
-    showCalendar: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      activated: false,
+      calendarMonthIndex: 0,
+      calendarStyle: {
+        marginTop: props.modal && !props.keepOpen ? '10vh' : 20,
+        opacity: props.keepOpen ? 1 : 0,
+        transition: `${transitionSpeed}ms`,
+      },
+      displayDate: '',
+      // used for fade in and out of modal component
+      modalDisplay: false,
+      showCalendar: false,
+    };
+  }
 
   closeCalendar = () => {
-    this.setState({ activated: true, showCalendar: false });
+    const newStyle = {
+      marginTop: this.props.modal && !this.props.keepOpen ? '10vh' : 20,
+      opacity: this.props.keepOpen ? 1 : 0,
+    };
+    this.updateCalendarStyle(newStyle);
+    this.setState({
+      modalDisplay: false,
+    }, () => {
+      setTimeout(() => {
+        this.setState({ activated: true, showCalendar: false });
+      }, transitionSpeed);
+    })
   }
 
   genFirstDay = (date) => {
@@ -89,9 +115,9 @@ class DatePicker extends Component {
         activated: true,
         calendarMonthIndex: 0,
         displayDate,
-        showCalendar: false,
       }, () => {
         this.props.handleDateChange(date);
+        this.closeCalendar()
       });
       // set the start date or change start date and erase end date
     } else if ((this.props.date && this.props.endDate) || !this.props.date) {
@@ -114,9 +140,9 @@ class DatePicker extends Component {
         activated: true,
         calendarMonthIndex: 0,
         displayDate,
-        showCalendar: false,
       }, () => {
         this.props.handleDateChange([startDate, endDate]);
+        this.closeCalendar();
       });
     }
   }
@@ -141,8 +167,22 @@ class DatePicker extends Component {
     const calendarMonthIndex = this.setMonthIndex();
     this.setState({
       calendarMonthIndex,
+      modalDisplay: true,
       showCalendar: true,
+    }, () => {
+      setTimeout(() => {
+        this.updateCalendarStyle({
+          marginTop: this.props.modal && !this.props.keepOpen ? '20vh' : 20,
+          opacity: 1,
+        });
+      }, 0);
     });
+  }
+
+  updateCalendarStyle = (newStyle) => {
+    const oldStyle = this.state.calendarStyle;
+    const calendarStyle = {...oldStyle, ...newStyle};
+    this.setState({ calendarStyle });
   }
 
   render() {
@@ -155,8 +195,9 @@ class DatePicker extends Component {
       forceError,
       hoverWeek,
       inputStyle,
-      lightHeader,
       keepOpen,
+      lightHeader,
+      modal,
       placeholder,
       range,
       required,
@@ -167,6 +208,7 @@ class DatePicker extends Component {
       activated,
       calendarMonthIndex,
       displayDate,
+      modalDisplay,
       showCalendar,
     } = this.state;
 
@@ -191,15 +233,17 @@ class DatePicker extends Component {
 
     const errorMessageDisplay =
       errorFound ? (
-        <span
-          className="error-message"
+        <div
           style={{
             color: errorColor,
-            marginTop: '5px',
+            marginTop: 5,
+            textAlign: 'left',
           }}
         >
-          {errorMessage}
-        </span>
+          <span>
+            {errorMessage}
+          </span>
+        </div>
       ) : null;
 
     const defaultInputStyle = {
@@ -226,15 +270,32 @@ class DatePicker extends Component {
           handleDateChange={this.handleDateChange}
           hoverWeek={hoverWeek}
           lightHeader={lightHeader}
+          modal={modal}
           moveIndex={this.moveIndex}
           range={range}
           startOfWeek={startOfWeek}
+          style={this.state.calendarStyle}
         />
       )
       : null;
 
+    // modal view is automatically disabled if keepOpen is true
+    const calendarDisplay = modal && showCalendar && !keepOpen ?
+      <Modal
+        fullDisplay={modalDisplay}
+      >
+        {calendar}
+      </Modal>
+      :
+      calendar;
+
     return (
-      <div className="DatePicker">
+      <div
+        className="DatePicker"
+        style={{
+          display: 'inline-block',
+        }}
+      >
         <div>
           <input
             className="date-picker-input"
@@ -245,9 +306,9 @@ class DatePicker extends Component {
             placeholder={placeholder}
             value={displayDate}
           />
-          {calendar}
+          {errorMessageDisplay}
+          {calendarDisplay}
         </div>
-        {errorMessageDisplay}
       </div>
     );
   }

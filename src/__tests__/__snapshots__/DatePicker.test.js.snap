@@ -3,6 +3,11 @@
 exports[`should render correctly 1`] = `
 <div
   className="DatePicker"
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
 >
   <div>
     <input
