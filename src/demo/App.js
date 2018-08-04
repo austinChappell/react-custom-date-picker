@@ -3,22 +3,22 @@ import DatePicker from '../lib';
 
 class App extends Component {
   state = {
-    date: null,
-    endDate: null,
+    date: new Date(2018, 7, 17),
+    // endDate: new Date(2018, 7, 19),
   }
 
   // use this for single date
-  // handleDateChange = (date) => {
-  //   this.setState({ date });
-  // }
+  handleDateChange = (date) => {
+    this.setState({ date });
+  }
 
   // use this for range dates
-  handleDateChange = ([date, endDate]) => {
-    this.setState({
-      date,
-      endDate,
-    });
-  }
+  // handleDateChange = ([date, endDate]) => {
+  //   this.setState({
+  //     date,
+  //     endDate,
+  //   });
+  // }
 
   render() {
     return (
@@ -26,7 +26,7 @@ class App extends Component {
         <DatePicker
           // color="#ff0000"
           date={this.state.date}
-          endDate={this.state.endDate}
+          // endDate={this.state.endDate}
           // errorColor="#00ff00"
           // errorMessage="This is the error message"
           // forceError
@@ -37,13 +37,13 @@ class App extends Component {
           }}
           // keepOpen
           lightHeader
-          maxDate="2018-04-18"
-          minDate="2018-04-17"
+          // maxDate="2018-04-18"
+          // minDate="2018-04-17"
           modal
           placeholder="Select Date"
-          range
+          // range
           required
-        // startOfWeek={1}
+          // startOfWeek={1}
         />
       </div>
     );

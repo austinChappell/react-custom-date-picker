@@ -51,6 +51,12 @@ const defaultProps = {
 class DatePicker extends Component {
   constructor(props) {
     super(props);
+
+    const preselection = props.date;
+    const formattedStart = props.date ? moment(props.date).format('MM/DD/YYYY') : '';
+    const formattedEnd = props.endDate && moment(props.endDate).format('MM/DD/YYYY');
+    const displayDate = props.range && preselection ? `${formattedStart} - ${formattedEnd}` : formattedStart;
+
     this.state = {
       activated: false,
       calendarMonthIndex: 0,
@@ -59,7 +65,7 @@ class DatePicker extends Component {
         opacity: props.keepOpen ? 1 : 0,
         transition: `${transitionSpeed}ms`,
       },
-      displayDate: '',
+      displayDate,
       // used for fade in and out of modal component
       modalDisplay: false,
       showCalendar: false,
@@ -117,43 +123,55 @@ class DatePicker extends Component {
   handleDateChange = (year, month, day) => {
     // only set one date
     if (!this.props.range) {
-      const displayDate = `${month}/${day}/${year}`;
-      const date = new Date(displayDate);
+      // set the start date or change start date and erase end date
+      this.setOneDate(year, month, day);
+   } else if ((this.props.date && this.props.endDate) || !this.props.date) {
+      this.setStartDate(year, month, day);
+    } else {
+      this.setBothDates(year, month, day);
+    }
+  }
+
+  setOneDate = (year, month, day) => {
+    const displayDate = `${month}/${day}/${year}`;
+    const date = new Date(displayDate);
+    this.setState({
+      activated: true,
+      calendarMonthIndex: 0,
+      displayDate,
+    }, () => {
+      this.props.handleDateChange(date);
+      this.closeCalendar()
+    });
+  }
+
+  setStartDate = (year, month, day) => {
+    const displayDate = `${month}/${day}/${year}`;
+    const date = new Date(displayDate);
+    this.setState({
+      activated: true,
+      displayDate,
+    }, () => {
+      this.props.handleDateChange([date, null]);
+    });
+    // set the end date
+  }
+
+  setBothDates = (year, month, day) => {
+    const startDisplay = this.state.displayDate;
+    const endDisplay = `${month}/${day}/${year}`;
+    const displayDate = `${startDisplay} - ${endDisplay}`;
+    const startDate = new Date(startDisplay);
+    const endDate = new Date(endDisplay);
+    if (endDate > startDate) {
       this.setState({
         activated: true,
         calendarMonthIndex: 0,
         displayDate,
       }, () => {
-        this.props.handleDateChange(date);
-        this.closeCalendar()
+        this.props.handleDateChange([startDate, endDate]);
+        this.closeCalendar();
       });
-      // set the start date or change start date and erase end date
-    } else if ((this.props.date && this.props.endDate) || !this.props.date) {
-      const displayDate = `${month}/${day}/${year}`;
-      const date = new Date(displayDate);
-      this.setState({
-        activated: true,
-        displayDate,
-      }, () => {
-        this.props.handleDateChange([date, null]);
-      });
-      // set the end date
-    } else {
-      const startDisplay = this.state.displayDate;
-      const endDisplay = `${month}/${day}/${year}`;
-      const displayDate = `${startDisplay} - ${endDisplay}`;
-      const startDate = new Date(startDisplay);
-      const endDate = new Date(endDisplay);
-      if (endDate > startDate) {
-        this.setState({
-          activated: true,
-          calendarMonthIndex: 0,
-          displayDate,
-        }, () => {
-          this.props.handleDateChange([startDate, endDate]);
-          this.closeCalendar();
-        });
-      }
     }
   }
 
