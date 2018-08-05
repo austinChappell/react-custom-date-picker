@@ -29,7 +29,10 @@ const CalendarHeader = (props) => {
       }}
     >
       <button
-        onClick={() => moveIndex(-1)}
+        onClick={(evt) => {
+          evt.preventDefault();
+          moveIndex(-1)}
+        }
         style={{
           backgroundColor: 'transparent',
           border: 'none',
@@ -47,7 +50,10 @@ const CalendarHeader = (props) => {
         {`${month} ${year}`}
       </span>
       <button
-        onClick={() => moveIndex(1)}
+        onClick={(evt) => {
+          evt.preventDefault();
+          moveIndex(1)
+        }}
         style={{
           backgroundColor: 'transparent',
           border: 'none',
