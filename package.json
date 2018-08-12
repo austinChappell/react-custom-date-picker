@@ -1,6 +1,6 @@
 {
   "name": "react-custom-date-picker",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "React Date Picker, allowing for custom appearance, range picker, and highlighting the week",
   "main": "build/index.js",
   "scripts": {
