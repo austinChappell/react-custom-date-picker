@@ -44,6 +44,7 @@ class App extends Component {
           // range
           required
           // startOfWeek={1}
+          width={400}
         />
       </div>
     );

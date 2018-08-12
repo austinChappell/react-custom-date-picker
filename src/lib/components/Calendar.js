@@ -22,7 +22,7 @@ const propTypes = {
   range: PropTypes.bool.isRequired,
   startOfWeek: PropTypes.number,
   style: PropTypes.objectOf(PropTypes.any),
-  width: PropTypes.number,
+  width: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -31,7 +31,6 @@ const defaultProps = {
   lightHeader: false,
   startOfWeek: 0,
   style: {},
-  width: 400,
 };
 
 const dayNames = [

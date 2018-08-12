@@ -26,6 +26,7 @@ const propTypes = {
   range: PropTypes.bool,
   required: PropTypes.bool,
   startOfWeek: PropTypes.number,
+  width: PropTypes.number,
 };
 
 const defaultProps = {
@@ -46,6 +47,7 @@ const defaultProps = {
   range: false,
   required: false,
   startOfWeek: 0,
+  width: 400,
 };
 
 class DatePicker extends Component {
@@ -232,6 +234,7 @@ class DatePicker extends Component {
       range,
       required,
       startOfWeek,
+      width,
     } = this.props;
 
     const {
@@ -307,6 +310,7 @@ class DatePicker extends Component {
           range={range}
           startOfWeek={startOfWeek}
           style={this.state.calendarStyle}
+          width={width}
         />
       )
       : null;

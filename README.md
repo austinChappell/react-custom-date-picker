@@ -139,4 +139,5 @@ This is the minimum requirement for using the react-custom-date-picker
 | range | Allow user to select start date and end date | Boolean | false | No |
 | required | Displays error on blur if date is invalid | Boolean | false | No |
 | startOfWeek | Set the starting day of the week (0 = Sunday, 1 = Monday, etc.) | Number | 0 | No |
+| width | Set width of datepicker window | Number | 400 | No |
 
