@@ -160,13 +160,17 @@ class Calendar extends Component {
       width,
     } = this.props;
 
+    // the 10 acts as margin
+    const windowWidth = window.innerWidth - 10;
+    const maxWidth = width > windowWidth ? windowWidth : width;
+
     // calendar default style
     const defaultStyle = {
       backgroundColor: '#ffffff',
       boxShadow: '1px 1px 5px gray',
       margin: modal ? '20vh auto' : 'auto',
       position: modal ? 'static' : 'absolute',
-      width,
+      width: maxWidth,
       zIndex: 1000,
     };
 
@@ -174,7 +178,7 @@ class Calendar extends Component {
     const wrapperStyle = Object.assign({}, defaultStyle, style);
 
     // get the width of each column
-    const colWidth = Math.floor(width / 7);
+    const colWidth = Math.floor(maxWidth / 7);
     // set the width for columns
     const colStyle = {
       boxSizing: 'border-box',
